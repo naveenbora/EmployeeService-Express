@@ -22,7 +22,8 @@ router.post('/',(req,res) => {
     const NewEmployee={
         id:findMax(Employees)+1,
         name:req.body.name,
-        email:req.body.email
+        email:req.body.email,
+        edit:true
     }
     if(NewEmployee.name!=null &&  NewEmployee.email!=null)
     {
@@ -36,22 +37,76 @@ router.post('/',(req,res) => {
 });
 
 
+
+
+//Add An Employee
+router.put('/',(req,res) => {
+    max=-1;
+    const NewEmployee={
+        id:findMax(Employees)+1,
+        name:"",
+        email:"",
+        edit:false
+    }
+    
+        Employees.push(NewEmployee);
+
+        res.send(Employees);
+    
+});
+//Change Edit status
+router.put('/:id',(req,res) => {
+    const IsExist=Employees.some(employee => employee.id===parseInt(req.params.id));
+    if(IsExist)
+    { 
+    const NewEmployeeEdit={
+        id:parseInt(req.params.id),
+        
+        edit:req.body.edit
+    }
+    if(NewEmployeeEdit.edit!=null )
+    {
+        Employees.forEach(employee => {
+            if(employee.id===parseInt(req.params.id))
+            {
+                
+                employee.edit=NewEmployeeEdit.edit;
+            }
+        });
+        res.send(Employees);
+        
+    }
+    else{
+        res.status(400).send("Fill the edit");
+    }
+    }
+    else{
+        res.status(404).send(`EmployeeId:${req.params.id} is Not Found`);
+    }
+});
+
+
 //Update a Employee By ID
 router.post('/:id',(req,res) => {
     const IsExist=Employees.some(employee => employee.id===parseInt(req.params.id));
     if(IsExist)
-    {
-        
-        
+    { 
     const NewEmployee={
         id:parseInt(req.params.id),
         name:req.body.name,
-        email:req.body.email
+        email:req.body.email,
+        edit:true
     }
     if(NewEmployee.name!=null &&  NewEmployee.email!=null)
     {
-        Employees.splice(Employees.findIndex(employee => employee.id===parseInt(req.params.id)),1);
-        Employees.push(NewEmployee);
+        Employees.forEach(employee => {
+            if(employee.id===parseInt(req.params.id))
+            {
+                employee.name=req.body.name;
+                employee.email=req.body.email;
+                employee.edit=true;
+            }
+        });
         res.send(Employees);
         
     }

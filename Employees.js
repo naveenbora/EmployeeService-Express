@@ -1,18 +1,21 @@
 const Employees=[
     {
         id:1,
-        name:"naveen",
-        email:"bnaveen@tavisca.com"
+        name:"Naveen",
+        email:"bnaveen@tavisca.com",
+        edit:true
     },
     {
         id:2,
-        name:"swar",
-        email:"swar@tavisca.com"
+        name:"Swar",
+        email:"swar@tavisca.com",
+        edit:true
     },
     {
         id:3,
-        name:"vamsi",
-        email:"vamsi@tavisca.com"
+        name:"Vamsi",
+        email:"vamsi@tavisca.com",
+        edit:true
     }
 ];
 module.exports=Employees;
