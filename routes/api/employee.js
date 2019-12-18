@@ -1,6 +1,7 @@
 const express=require('express');
 const Employees=require('../../Employees');
 const router=express.Router();
+
 // Get all Employees
 router.get('/',(req,res)=>res.json(Employees));
 
@@ -37,8 +38,6 @@ router.post('/',(req,res) => {
 });
 
 
-
-
 //Add An Employee
 router.put('/',(req,res) => {
     max=-1;
@@ -54,6 +53,8 @@ router.put('/',(req,res) => {
         res.send(Employees);
     
 });
+
+
 //Change Edit status
 router.put('/:id',(req,res) => {
     const IsExist=Employees.some(employee => employee.id===parseInt(req.params.id));
