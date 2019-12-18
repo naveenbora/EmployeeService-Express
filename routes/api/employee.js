@@ -47,14 +47,9 @@ router.put('/',(req,res) => {
         email:"",
         edit:false
     }
-    
         Employees.push(NewEmployee);
-
         res.send(Employees);
-    
 });
-
-
 //Change Edit status
 router.put('/:id',(req,res) => {
     const IsExist=Employees.some(employee => employee.id===parseInt(req.params.id));
@@ -70,12 +65,10 @@ router.put('/:id',(req,res) => {
         Employees.forEach(employee => {
             if(employee.id===parseInt(req.params.id))
             {
-                
                 employee.edit=NewEmployeeEdit.edit;
             }
         });
-        res.send(Employees);
-        
+        res.send(Employees);    
     }
     else{
         res.status(400).send("Fill the edit");
@@ -136,7 +129,6 @@ router.delete('/:id',(req,res) => {
     }
 });
 
-
 //Calculating max Id
 function findMax(arr) {
     let  max = arr[0].id;
@@ -149,4 +141,5 @@ function findMax(arr) {
   
     return max;
   };
+  
 module.exports=router;

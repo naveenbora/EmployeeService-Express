@@ -5,7 +5,6 @@ const connection=require('./mysql');
         }
     else 
         console.log(connection.state);
-
     })
 var Employees=[];
   connection.query('select * from employees', function (err, rows, fields) {
@@ -25,7 +24,6 @@ var Employees=[];
             edit:element.edit
         })
     }); 
-    
     // console.log('The solution is: ',Employees);
   
 });
